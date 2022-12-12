@@ -14,6 +14,7 @@ let bookList = JSON.parse(localStorage.getItem('bookList')) || [];
 let bookgenerator = '';
 const taskList = document.getElementById('taskList');
 const input = document.getElementById('myInput');
+const btnAdd = document.getElementById('btnAdd');
 
 function getTask() {
   description = input.value;
@@ -46,7 +47,6 @@ input.addEventListener('keypress', (event) => {
   }
 });
 
-const btnAdd = document.getElementById('btnAdd');
 btnAdd.addEventListener('click', () => {
   getTask();
   addBook(description, completed, index);
@@ -65,10 +65,9 @@ function burbujeo(event) {
 }
 
 taskList.addEventListener('click', (event) => {
-  // event.stopPropagation();
   const ID = burbujeo(event);
   if (ID) {
-    remove(ID);
+    bookList = remove(ID);
     bookList = bookListDeleted;
     localStorage.setItem('bookList', JSON.stringify(bookList));
     display(bookList);
